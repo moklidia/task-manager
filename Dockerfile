@@ -9,7 +9,8 @@ RUN apt-get update && apt-get install -y yarn
 
 RUN mkdir -p /task_manager
 WORKDIR /task_manager
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile /task_manager/Gemfile
+COPY Gemfile.lock /task_manager/Gemfile.lock
 RUN bundle install --jobs 3
 
 COPY . /task_manager
