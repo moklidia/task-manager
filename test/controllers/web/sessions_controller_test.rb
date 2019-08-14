@@ -1,3 +1,4 @@
+include Concerns::AuthHelper
 require 'test_helper'
 
 class Web::SessionsControllerTest < ActionDispatch::IntegrationTest
