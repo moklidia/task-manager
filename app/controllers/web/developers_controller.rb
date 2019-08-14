@@ -1,5 +1,6 @@
+# frozen_string_literal: true
+
 class Web::DevelopersController < Web::ApplicationController
-  
   def new
     @developer = Developer.new
   end
@@ -21,4 +22,3 @@ class Web::DevelopersController < Web::ApplicationController
     params.require(:developer).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end
-
