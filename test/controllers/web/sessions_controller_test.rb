@@ -7,8 +7,7 @@ class Web::SessionsControllerTest < ActionDispatch::IntegrationTest
     get new_session_url
     assert_response :success
   end
-
-<<<<<<< HEAD
+  
   test "should post create" do
   	password = generate(:password)
   	user = create(:user, {password: password})
@@ -18,17 +17,6 @@ class Web::SessionsControllerTest < ActionDispatch::IntegrationTest
   	}
   	post session_url, params: { session: attrs }
   	assert_response :redirect
-=======
-  test 'should post create' do
-    password = generate(:string)
-    user = create(:user, password: password)
-    attrs = {
-      email: user.email,
-      password: password
-    }
-    post session_url, params: { session: attrs }
-    assert_response :redirect
->>>>>>> fix lint
   end
 
   test 'should delete destroy' do
