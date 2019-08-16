@@ -11,6 +11,7 @@ RUN mkdir -p /task_manager
 WORKDIR /task_manager
 COPY Gemfile /task_manager/Gemfile
 COPY Gemfile.lock /task_manager/Gemfile.lock
+RUN gem uninstall bundler && gem install bundler -v 2.0.2
 RUN bundle install --jobs 3
 
 COPY . /task_manager
