@@ -165,6 +165,7 @@ GEM
       ffi (~> 1.0)
     ref (2.0.0)
     regexp_parser (1.6.0)
+    rollbar (2.21.0)
     rubocop (0.74.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
@@ -259,6 +260,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.3)
+  rollbar
   rubocop
   sass-rails (~> 5.0)
   selenium-webdriver

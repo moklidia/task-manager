@@ -31,6 +31,7 @@ gem 'less-rails' # Sprockets (what Rails 3.1 uses for its asset pipeline) suppor
 gem 'slim-rails'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
+gem 'rollbar'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
