@@ -1,1 +1,4 @@
-<% render "form", locals: {form_user: @user, path: new_admin_user_path, title: 'h4 Create new user', button_name: 'Create', form_action: admin_users_path} %>
+= content_for :title do
+  h4 Create new user
+
+= render partial: "form", locals: {form_user: @user, path: admin_users_path, button_name: 'Create'}
