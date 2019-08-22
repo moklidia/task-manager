@@ -23,5 +23,10 @@ module Concerns
 
       @_current_user ||= User.find_by(id: session[:user_id])
     end
+
+    def current_user_is_a(userType)
+      logger.debug(@_current_user.inspect)
+      @_current_user.type === "#{userType}"
+    end
   end
 end
