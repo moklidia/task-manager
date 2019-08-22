@@ -33,6 +33,10 @@ gem 'less-rails' # Sprockets (what Rails 3.1 uses for its asset pipeline) suppor
 gem 'slim-rails'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
+gem 'kaminari'
+gem 'ransack', github: 'activerecord-hackery/ransack'
+gem 'responders'
+gem 'active_model_serializers'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
