@@ -24,8 +24,8 @@ module Concerns
       @_current_user ||= User.find_by(id: session[:user_id])
     end
 
-    def current_user_is_a(userType)
-      current_user.type === userType.to_s
+    def current_user_is_a(user_type)
+      current_user.type === user_type.to_s
     end
   end
 end
