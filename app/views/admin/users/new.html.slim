@@ -1,0 +1,4 @@
+= content_for :title do
+  h4 Create new user
+
+= render partial: "form", locals: {form_user: @user, path: admin_users_path, button_name: 'Create'}
