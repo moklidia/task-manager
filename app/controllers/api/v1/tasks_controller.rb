@@ -9,7 +9,7 @@ class Api::V1::TasksController < Api::V1::ApplicationController
     tasks = Task.all
                 .ransack(q_params)
                 .result
-                .page(params[:pate])
+                .page(params[:page])
                 .per(params[:per_page])
 
     json = {
