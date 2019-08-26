@@ -25,8 +25,7 @@ module Concerns
     end
 
     def current_user_is_a(userType)
-      logger.debug(@_current_user.inspect)
-      @_current_user.type === userType.to_s
+      current_user.type === userType.to_s
     end
   end
 end
