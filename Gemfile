@@ -37,6 +37,8 @@ gem 'responders'
 gem 'slim-rails'
 gem 'therubyracer'
 gem 'twitter-bootstrap-rails'
+gem 'rollbar'
+gem 'newrelic_rpm'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
