@@ -2,9 +2,18 @@
   "name": "task_manager",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^4.0.7"
+    "@rails/webpacker": "^4.0.7",
+    "webpacker-react": "^0.3.2"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.3.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-import-resolver-webpack": "^0.11.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.18.2",
     "webpack-dev-server": "^3.8.0"
   }
 }
