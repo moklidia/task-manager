@@ -1,4 +1,4 @@
-FROM ruby:2.5
+FROM ruby:2.5.5
 
 RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
 RUN curl -sL https://deb.nodesource.com/setup_9.x | bash -
