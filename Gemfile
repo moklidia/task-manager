@@ -51,7 +51,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'simple_form'
 gem 'state_machines'
 gem 'state_machines-activerecord'
-gem 'webpacker', '~> 3.5'
+gem 'webpacker', '~> 4.x'
 gem 'webpacker-react'
 
 group :development, :test do
