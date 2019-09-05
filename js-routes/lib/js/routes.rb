@@ -1,4 +1,6 @@
-require "js/routes/version"
+# frozen_string_literal: true
+
+require 'js/routes/version'
 
 module Js
   module Routes
