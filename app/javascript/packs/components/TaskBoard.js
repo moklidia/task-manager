@@ -2,6 +2,8 @@ import React from 'react'
 import Board from 'react-trello'
 import { fetch } from './Fetch';
 import LaneHeader from './LaneHeader';
+import Button from 'react-bootstrap/Button';
+import AddPopup from './AddPopup';
 
 export default class TasksBoard extends React.Component {
   state = {
@@ -13,7 +15,8 @@ export default class TasksBoard extends React.Component {
       ready_for_release: null,
       released: null,
       archived: null
-    }
+    },
+    addPopupShow: false
   }
 
   generateLane(id, title) {
@@ -71,31 +74,57 @@ export default class TasksBoard extends React.Component {
 
   fetchLine(state, page = 1) {
     return fetch('GET', window.Routes.api_v1_tasks_path({ q: { state_eq: state }, page: page, per_page: 10, format: 'json' })).then(({data}) => {
-      console.log(window);
       return data;
     })
   }
 
   onLaneScroll = (requestedPage, state) => {
-  return this.fetchLine(state, requestedPage).then(({items}) => {
-    return items.map((task) => {
-      return {
-        ...task,
-        label: task.state,
-        title: task.name
-      };
+    return this.fetchLine(state, requestedPage).then(({items}) => {
+      return items.map((task) => {
+        return {
+          ...task,
+          label: task.state,
+          title: task.name
+        };
+      });
+    })
+  }
+
+  handleAddShow = () => {
+    this.setState({ addPopupShow: true });
+  }
+
+  handleAddClose = ( added = false ) => {
+    this.setState({ addPopupShow: false });
+    if (added == true) {
+      this.loadLine('new_task');
+    };
+  }
+
+  handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
+  fetch('PUT', window.Routes.api_v1_task_path(cardId, { format: 'json' }), { task: { state: targetLaneId } })
+    .then(() => {
+      this.loadLine(sourceLaneId);
+      this.loadLine(targetLaneId);
     });
-  })
 }
 
   render() {
     return <div>
       <h1>Your tasks</h1>
+      <Button variant="primary" onClick={this.handleAddShow}>Create new task</Button>
       <Board
         data={this.getBoard()}
         onLaneScroll={this.onLaneScroll}
         LaneHeader={<LaneHeader/>}
         cardsMeta={this.state}
+        draggable
+        laneDraggable={false}
+        handleDragEnd={this.handleDragEnd}
+      />
+      <AddPopup
+        show = {this.state.addPopupShow}
+        onClose={this.handleAddClose}
       />
     </div>;
   }
