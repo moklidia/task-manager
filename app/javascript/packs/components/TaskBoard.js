@@ -105,40 +105,51 @@ export default class TasksBoard extends React.Component {
   }
 
   handleDragEnd = (cardId, sourceLaneId, targetLaneId) => {
-  fetch('PUT', window.Routes.api_v1_task_path(cardId, { format: 'json' }), { task: { state: targetLaneId } })
-    .then(() => {
-      this.loadLine(sourceLaneId);
-      this.loadLine(targetLaneId);
-    });
-}
+    const state_event_map = { 
+      in_development: 'start',
+      in_qa: 'submit',
+      in_code_review: 'review',
+      ready_for_release: 'prepare',
+      released: 'release',
+      archived: 'archive'
+    }
 
-onCardClick = (cardId) => {
-  this.setState({editCardId: cardId});
-  this.handleEditShow();
-}
-
-handleEditClose = ( edited = '' ) => {
-  this.setState({ editPopupShow: false, editCardId: null});
-  switch (edited) {
-    case 'new_task':
-    case 'in_development':
-    case 'in_qa':
-    case 'in_code_review':
-    case 'ready_for_release':
-    case 'released':
-    case 'archived':
-      this.loadLine(edited);
-      break;
-    default:
-      break;
+    fetch('PUT', window.Routes.api_v1_task_path(cardId, { format: 'json' }), { task: { state_event: state_event_map[targetLaneId] } })
+      .then(() => {
+        console.log(targetLaneId);
+        this.loadLine(sourceLaneId);
+        this.loadLine(targetLaneId);
+      });
   }
-}
 
-handleEditShow = () => {
-  this.setState({ editPopupShow: true });
-}
+  onCardClick = (cardId) => {
+    this.setState({editCardId: cardId});
+    this.handleEditShow();
+  }
+
+  handleEditClose = ( edited = '' ) => {
+    this.setState({ editPopupShow: false, editCardId: null});
+    switch (edited) {
+      case 'new_task':
+      case 'in_development':
+      case 'in_qa':
+      case 'in_code_review':
+      case 'ready_for_release':
+      case 'released':
+      case 'archived':
+        this.loadLine(edited);
+        break;
+      default:
+        break;
+    }
+  }
+
+  handleEditShow = () => {
+    this.setState({ editPopupShow: true });
+  }
 
   render() {
+    console.log(this.handleDragEnd);
     return <div>
       <h1>Your tasks</h1>
       <Button variant="primary" onClick={this.handleAddShow}>Create new task</Button>
