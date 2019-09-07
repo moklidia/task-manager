@@ -48,15 +48,17 @@ export default class EditPopup extends React.Component {
   }
 
   handleCardEdit = () => {
+    const { task } = this.state;
+    const { name, description, author, assignee, state } = task;
     fetch('PUT', window.Routes.api_v1_task_path(this.props.cardId, {format: 'json'}), {
-      name: this.state.task.name,
-      description: this.state.task.description,
-      author_id: this.state.task.author.id,
-      assignee_id: this.state.task.assignee.id,
-      state: this.state.task.state
+      name,
+      description,
+      // author_id: this.state.task.author.id,
+      // assignee_id: this.state.task.assignee.id,
+      state
     }).then( response => {
       if (response.statusText == 'OK') {
-        this.props.onClose(this.state.task.state);
+        this.props.onClose(state);
       }
       else {
         alert('Update failed! ' + response.status + ' - ' + response.statusText);
@@ -124,7 +126,7 @@ export default class EditPopup extends React.Component {
                 />
               </FormGroup>
             </form>
-            Author: {this.state.author.first_name} {this.state.author.last_name}
+            {/*Author: {this.state.author.first_name} {this.state.author.last_name}*/}
           </Modal.Body>
 
           <Modal.Footer>
