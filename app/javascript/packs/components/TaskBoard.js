@@ -116,7 +116,6 @@ export default class TasksBoard extends React.Component {
 
     fetch('PUT', window.Routes.api_v1_task_path(cardId, { format: 'json' }), { task: { state_event: state_event_map[targetLaneId] } })
       .then(() => {
-        console.log(targetLaneId);
         this.loadLine(sourceLaneId);
         this.loadLine(targetLaneId);
       });
