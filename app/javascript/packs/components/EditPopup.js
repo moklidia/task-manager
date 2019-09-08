@@ -1,6 +1,7 @@
 import React from 'react';
 import { Modal, Button, FormGroup, FormLabel, FormControl } from 'react-bootstrap';
 import { fetch } from './Fetch';
+import UserSelect from './UserSelect';
 
 export default class EditPopup extends React.Component {
   state = {
@@ -53,8 +54,8 @@ export default class EditPopup extends React.Component {
     fetch('PUT', window.Routes.api_v1_task_path(this.props.cardId, {format: 'json'}), {
       name,
       description,
-      // author_id: this.state.task.author.id,
-      // assignee_id: this.state.task.assignee.id,
+      author_id: this.state.task.author.id,
+      assignee_id: this.state.task.assignee.id,
       state
     }).then( response => {
       if (response.statusText == 'OK') {
@@ -76,6 +77,14 @@ export default class EditPopup extends React.Component {
           alert('DELETE failed! ' + response.status + ' - ' + response.statusText);
         }
       });
+  }
+
+  handleAuthorChange = (value) => {
+    this.setState({ task: { ...this.state.task, author: value }});
+  }
+
+  handleAssigneeChange = (value) => {
+    this.setState({ task: { ...this.state.task, assignee: value }});
   }
 
   render () {
@@ -126,9 +135,19 @@ export default class EditPopup extends React.Component {
                 />
               </FormGroup>
             </form>
-            {/*Author: {this.state.author.first_name} {this.state.author.last_name}*/}
+            Author: {this.state.task.author.first_name} {this.state.task.author.last_name}
           </Modal.Body>
-
+          <UserSelect
+            id="Author"
+            disabled="true"
+            value={this.state.task.author}
+            onChange={this.handleAuthorChange}
+          />
+          <UserSelect
+            id="Assignee"
+            onChange={this.handleAssigneeChange}
+            value={this.state.task.assignee}
+          />
           <Modal.Footer>
             <Button variant="danger" onClick={this.handleCardDelete}>Delete</Button>
             <Button onClick={this.props.onClose}>Close</Button>
