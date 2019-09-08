@@ -2,10 +2,11 @@ import React from "react";
 
 export default class LaneHeader extends React.Component {
   render() {
+  	const { lane } = this.props;
     return (
       <div>
-        <b>{this.props.id}</b> ({this.props.cards.length}/
-        {this.props.total_count})
+        <b>{lane.id}</b> ({lane.cards.length}/
+        {lane.total_count})
       </div>
     );
   }

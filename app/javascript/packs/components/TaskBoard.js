@@ -148,14 +148,13 @@ export default class TasksBoard extends React.Component {
   }
 
   render() {
-    console.log(this.handleDragEnd);
     return <div>
       <h1>Your tasks</h1>
       <Button variant="primary" onClick={this.handleAddShow}>Create new task</Button>
       <Board
         data={this.getBoard()}
         onLaneScroll={this.onLaneScroll}
-        LaneHeader={<LaneHeader/>}
+        LaneHeader={<LaneHeader />}
         cardsMeta={this.state}
         draggable
         laneDraggable={false}
