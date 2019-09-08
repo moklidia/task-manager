@@ -21,7 +21,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
   end
 
   def show
-    task = User.find(params[:id])
+    user = User.find(params[:id])
     respond_with(user)
   end
 end
