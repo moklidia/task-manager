@@ -12,8 +12,8 @@ class Api::V1::ApplicationController < Api::ApplicationController
   end
 
   def build_meta_users(collection)
-  	{
-  		count: collection.count
-  	}
+    {
+      count: collection.count
+    }
   end
 end
