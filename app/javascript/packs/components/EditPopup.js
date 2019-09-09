@@ -88,6 +88,7 @@ export default class EditPopup extends React.Component {
   }
 
   render () {
+    const { task } = this.state;
     if (this.state.isLoading) {
       return (
         <Modal show={this.props.show} onHide={this.props.onClose}>
@@ -110,7 +111,7 @@ export default class EditPopup extends React.Component {
         <Modal show={this.props.show} onHide={this.props.onClose}>
           <Modal.Header closeButton>
             <Modal.Title>
-              Task # {this.state.task.id} [{this.state.task.state}]
+              Task # {task.id} [{task.state}]
             </Modal.Title>
           </Modal.Header>
 
@@ -129,13 +130,13 @@ export default class EditPopup extends React.Component {
                 <FormLabel>Task description:</FormLabel>
                 <FormControl
                   type="textarea"
-                  value={this.state.task.description}
+                  value={task.description}
                   placeholder='Set the description for the task'
                   onChange={this.handleDecriptionChange}
                 />
               </FormGroup>
             </form>
-            Author: {this.state.task.author.first_name} {this.state.task.author.last_name}
+            Author: {task.author.first_name} {task.author.last_name}
           </Modal.Body>
           <UserSelect
             id="Author"
@@ -146,7 +147,7 @@ export default class EditPopup extends React.Component {
           <UserSelect
             id="Assignee"
             onChange={this.handleAssigneeChange}
-            value={this.state.task.assignee}
+            value={task.assignee}
           />
           <Modal.Footer>
             <Button variant="danger" onClick={this.handleCardDelete}>Delete</Button>
