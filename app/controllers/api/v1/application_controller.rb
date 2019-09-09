@@ -2,7 +2,7 @@
 
 class Api::V1::ApplicationController < Api::ApplicationController
   include Concerns::AuthHelper
-  
+
   def build_meta_tasks(collection)
     {
       count: collection.count,
