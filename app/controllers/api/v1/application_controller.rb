@@ -18,5 +18,4 @@ class Api::V1::ApplicationController < Api::ApplicationController
       count: collection.count
     }
   end
-
 end
