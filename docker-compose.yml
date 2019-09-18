@@ -8,12 +8,14 @@ services:
       - .:/task_manager:cached
     ports:
       - 3000:3000
+      - 3035:3035
     volumes_from:
       - bundle_cache
     environment:
       - BUNDLE_PATH=/bundle_cache
       - DATABASE_HOST=db
       - DATABASE_USERNAME=postgres
+    command: bundle exec foreman start
   db:
     image: postgres:10.3-alpine
   bundle_cache:

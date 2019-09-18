@@ -13,6 +13,7 @@ WORKDIR /task_manager
 COPY Gemfile /task_manager/Gemfile
 COPY Gemfile.lock /task_manager/Gemfile.lock
 RUN gem uninstall bundler && gem install bundler -v 2.0.2
+RUN gem install foreman
 RUN bundle install --jobs 3
 
 COPY . /task_manager

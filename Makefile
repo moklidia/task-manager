@@ -3,7 +3,7 @@ migrate:
 bash:
 	docker-compose run --rm web bash
 lint:
-	node_modules/.bin/eslint app/assets
+	node_modules/.bin/eslint app/javascript app/assets
 lint-fix:
-	node_modules/.bin/eslint --fix app/assets
+	node_modules/.bin/eslint --fix app/javascript app/assets
 
